@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{./page/index :: dynamic(~{::main})}">
+<head>
+
+</head>
+<body>
+<div th:fragment="main">
+    <!-- partial -->
+    <form action="">
+        <label>FullName: </label>
+        <input id="fullName" type="text" value="BuiQuocDat">
+        <label>Age: </label>
+        <input id="age" value="23"  type="number">
+    </form>
+    <!-- main-panel ends -->
+</div>
+</body>
+</html>
