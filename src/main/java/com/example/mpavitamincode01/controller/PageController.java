@@ -10,24 +10,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
     @GetMapping("/index")
     public String doGetIndex(Model model){
-        model.addAttribute("activeMenu", "model-index");
+        model.addAttribute("activeMenu", "Index");
         return "page/pages/form";
     };
 
     @GetMapping("/dashboard")
-    public String doGetDashboard(){
+    public String doGetDashboard(Model model){
+        model.addAttribute("activeMenu", "Dashboard");
         return "page/pages/dashboard";
     };
 
     @GetMapping("/table")
     public String doGetTableView(Model model){
-        model.addAttribute("activeMenu", "model-table");
+        model.addAttribute("activeMenu", "Table");
         return "page/pages/tables";
     };
 
     @GetMapping("/billing")
     public String doGetBillingView(Model model){
-        model.addAttribute("activeMenu", "model-billing");
+        model.addAttribute("activeMenu", "Billing");
         return "page/pages/billing";
     };
 
