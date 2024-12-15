@@ -7,6 +7,11 @@
 
 <body>
     <div th:fragment="main">
+        <script type="text/javascript">
+            $(document).ready(function (){
+                getAllUser();
+            })
+        </script>
         <script type="text/javascript" th:src="@{/page/pages/js/form.js}"></script>
         <!-- partial -->
         <div class="col-12">
@@ -18,13 +23,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="txtAge" class="form-label">Age</label>
-                        <textarea class="form-control bg-body" id="txtAge" type="number"></textarea>
+                        <input class="form-control bg-body" id="txtAge" type="number">
                     </div>
                     <div class="mb-3">
                         <label for="txtHometown" class="form-label">Hometown</label>
-                        <textarea class="form-control bg-body" id="txtHometown" type="text"></textarea>
+                        <input class="form-control bg-body" id="txtHometown" type="text">
                     </div>
-                    <button class="btn btn-success" type="button" onclick="btnNotification()">Notification</button>
+                    <button id="btnNotification" class="btn btn-success" type="button" onclick="btnNotification()">Notification</button>
+                    <button id="btnAddUser" class="btn btn-primary" type="button" onclick="addUser()">Add User</button>
                 </div>
                 <div class="col-lg-6">
                     <div class="">
@@ -114,22 +120,19 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h6 class="col-lg-12">Thống Kê Theo Ngày (Cột)</h6>
-                            <p class="text-sm">Last Campaign Performance</p>
-                            <div class="pe-2">
-                                <div class="chart">
-                                    <canvas id="chart-bars" class="chart-canvas" height="170"></canvas>
-                                </div>
-                            </div>
-                            <hr class="dark horizontal">
-                            <div class="d-flex ">
-                                <i class="material-symbols-rounded text-sm my-auto me-1">schedule</i>
-                                <p class="mb-0 text-sm"> campaign sent 2 days ago </p>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="table table-light table-striped-columns">
+                        <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>User Age</th>
+                            <th>User Hometown</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbodyTableUser">
+
+                        </tbody>
+                    </table>
+
                 </div>
 
                 <div class="col-lg-6">

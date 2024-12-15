@@ -26,3 +26,48 @@ function btnNotification() {
     document.getElementById("noti-information").innerHTML = `Notification to User: ${obj.fullName}`;
     document.getElementById("noti-information-time").innerHTML = `${getFormattedDate()}`;
 }
+async function addUser() {
+    let listUser = [];
+    let obj = {
+        'fullName': document.getElementById("txtFullName").value,
+        'age': document.getElementById("txtAge").value,
+        'hometown': document.getElementById("txtHometown").value
+    };
+    // listUser.push(obj);
+    // createTable(listUser);
+    await insertUser(obj);
+}
+
+function createTable(listUser){
+    try{
+        let tbody = document.getElementById("tbodyTableUser");
+        let tbodyString = "";
+        for(let i = 0 ; i < listUser.length ; i++){
+            tbodyString += `<tr>`+
+                `<td>${listUser[i].fullName}</td>`+
+                `<td>${listUser[i].age}</td>`+
+                `<td>${listUser[i].hometown}</td>`+
+                `</tr>`;
+        }
+        tbody.innerHTML += tbodyString;
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+async function getAllUser(){
+   let {data: result} = await axios.get("/api-user/get-all-user");
+   if(result.status){
+       createTable(result.data);
+   }
+}
+
+insertUser = async (user) => {
+    let result = await axios.post("/api-user/insert-user", user);
+    if(result.status){
+        getAllUser();
+    }
+}
+
+
+
